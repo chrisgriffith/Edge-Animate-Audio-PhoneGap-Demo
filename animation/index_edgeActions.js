@@ -91,8 +91,11 @@ function playPGAudio(url) {
 }
 
 function getPhoneGapPath() {
-    var path = window.location.pathname;
-    path = path.substr( path, path.length - 10 );
-    return 'file://' + path;
-
+	var devicePlatform = device.platform;
+	if (devicePlatform === "iOS") {
+		path = "";
+	} else if (devicePlatform === "Android" || devicePlatform === 'android') {
+		path = "/android_asset/www/";
+	}
+	return path;
 };
